@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
+from blog.database import Base
+
 
 class User(BaseModel):
     name: str
@@ -26,9 +28,16 @@ class ShowUser(BaseModel):
         orm_mode = True
         
 
+class ShowBLogCreator(BaseModel):
+    name: str
+    email: str
+    class Config():
+        orm_mode = True
+        
+
 class ShowBlog(Blog):
 
-    creator: ShowUser
+    creator: ShowBLogCreator
     class Config():
         orm_mode = True
 
